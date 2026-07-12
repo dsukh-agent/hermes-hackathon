@@ -1,0 +1,5 @@
+Visit https://auth.convex.dev/device?user_code=STVD-QZRK to finish logging in.
+You should see the following code which expires in 299 seconds: STVD-QZRK
+- Open https://auth.convex.dev/device?user_code=STVD-QZRK in your browser to log in.
+
+[32m✔[39m Saved credentials to ~/.convex/config.json

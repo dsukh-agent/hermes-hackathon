@@ -1,0 +1,28 @@
+
+> temp-app@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.2s
+(node:47337) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.4s (657 modules)
+ GET / 200 in 2677ms
+ ✓ Compiled in 178ms (312 modules)
+ ✓ Compiled /favicon.ico in 157ms (359 modules)
+ GET /favicon.ico 200 in 207ms
+ ✓ Compiled /api/analyze in 170ms (388 modules)
+LLM API failed, returning mock phrases.
+generateFUMeter API error: 401 Unauthorized
+ POST /api/analyze 200 in 7281ms
+ ✓ Compiled /roast/[id] in 155ms (695 modules)
+ ✓ Compiled in 292ms (648 modules)
+ ✓ Compiled in 216ms (668 modules)
+ ✓ Compiled in 127ms (668 modules)
+ ✓ Compiled in 124ms (668 modules)
+ ✓ Compiled in 332ms (668 modules)

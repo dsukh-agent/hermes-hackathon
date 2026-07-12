@@ -75,9 +75,15 @@ export default function InputTerminal() {
       setError("BUFFER_EMPTY — PASTE CONTENT TO ANALYZE");
       return;
     }
-    if (mode === "URL" && !sourceUrl) {
-      setError("NO_PAYLOAD — ENTER A YOUTUBE URL");
-      return;
+    if (mode === "URL") {
+      if (!sourceUrl) {
+        setError("NO_PAYLOAD — ENTER A YOUTUBE URL");
+        return;
+      }
+      if (!sourceUrl.includes("youtube.com") && !sourceUrl.includes("youtu.be")) {
+        setError("UNSUPPORTED_PROTOCOL — USE RAW_TEXT_MODE FOR LINKEDIN/X");
+        return;
+      }
     }
 
     setLoading(true);

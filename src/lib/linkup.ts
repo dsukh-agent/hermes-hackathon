@@ -30,8 +30,8 @@ export async function extractKeyPhrases(content: string, hermesApiKey: string): 
     });
 
     if (!response.ok) {
-      console.warn("LLM API failed, returning mock phrases.");
-      return ["Mock distinctive claim 1", "Mock distinctive claim 2", "Mock distinctive claim 3"];
+      console.warn("LLM API failed, extracting phrases from text directly.");
+      return fallbackPhrases(content);
     }
 
     const data = await response.json();
@@ -42,15 +42,24 @@ export async function extractKeyPhrases(content: string, hermesApiKey: string): 
       if (parsed.phrases && Array.isArray(parsed.phrases)) {
         return parsed.phrases;
       }
-      return ["Mock distinctive claim 1", "Mock distinctive claim 2", "Mock distinctive claim 3"];
+      return fallbackPhrases(content);
     } catch (e) {
       console.error("Failed to parse key phrases JSON", e);
-      return ["Mock distinctive claim 1", "Mock distinctive claim 2", "Mock distinctive claim 3"];
+      return fallbackPhrases(content);
     }
   } catch (error) {
     console.error("Error extracting key phrases:", error);
-    return ["Mock distinctive claim 1", "Mock distinctive claim 2", "Mock distinctive claim 3"];
+    return fallbackPhrases(content);
   }
+}
+
+function fallbackPhrases(content: string): string[] {
+  const sentences = content.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 20);
+  if (sentences.length > 0) {
+    const shuffled = sentences.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3).map(s => s.substring(0, 60) + (s.length > 60 ? '...' : ''));
+  }
+  return ["Generic corporate synergy detected", "AI generated filler content", "Unoriginal thought leader claims"];
 }
 
 export async function runOriginalityScan(phrases: string[], linkupApiKey: string): Promise<Record<string, unknown>[]> {

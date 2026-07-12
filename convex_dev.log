@@ -1,0 +1,18 @@
+✔ Provisioned a dev deployment and saved its:
+    HTTP actions URL as NEXT_PUBLIC_CONVEX_SITE_URL
+ to .env.local
+
+Write your Convex functions in convex/
+Give us feedback at https://convex.dev/community or support@convex.dev
+View the Convex dashboard at https://dashboard.convex.dev/d/graceful-gnat-919
+
+▌ Developing against deployment:
+▌ [Development] dipesh-sukhani:hermes-hackathon:dev/dipesh-sukhani (dev) (dashboard: https://dashboard.convex.dev/t/dipesh-sukhani/hermes-hackathon/graceful-gnat-919)
+▌ └─ https://graceful-gnat-919.convex.cloud
+- Preparing Convex functions...
+
+Convex AI files are not installed. Run npx convex ai-files install to get started or npx convex ai-files disable to hide this message.
+[32m✔[39m 14:40:41 Convex functions ready! (3.17s)
+- Preparing Convex functions...
+
+[32m✔[39m 14:52:16 Convex functions ready! (2.4s)

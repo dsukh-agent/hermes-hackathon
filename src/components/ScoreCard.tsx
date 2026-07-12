@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { Roast } from "@/lib/types";
+import * as htmlToImage from "html-to-image";
 
 function fuLabel(fuScore: number) {
   if (fuScore >= 85) return "CRITICAL CONTAMINATION DETECTED";
@@ -14,11 +15,29 @@ export default function ScoreCard({ roast }: { roast: Roast }) {
   const { score } = roast;
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
     return () => clearTimeout(t);
   }, []);
+
+  const downloadPng = async () => {
+    if (!cardRef.current) return;
+    try {
+      const dataUrl = await htmlToImage.toPng(cardRef.current, {
+        quality: 1,
+        backgroundColor: '#121212', // Assuming dark theme background color
+      });
+      const link = document.createElement('a');
+      link.download = `roast-${roast.id}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error('Error generating PNG', error);
+      alert('Failed to generate PNG.');
+    }
+  };
 
   const copyUrl = async () => {
     try {
@@ -33,7 +52,7 @@ export default function ScoreCard({ roast }: { roast: Roast }) {
   };
 
   return (
-    <div className="brutalist-card bg-surface-container-lowest border-border-width-heavy border-primary p-gutter md:p-8 relative overflow-hidden">
+    <div ref={cardRef} className="brutalist-card bg-surface-container-lowest border-border-width-heavy border-primary p-gutter md:p-8 relative overflow-hidden">
       {/* Original snippet */}
       <div className="mb-8 border-border-width border-surface-variant p-4 bg-surface-dim">
         <div className="flex items-center gap-2 mb-2">
@@ -152,9 +171,7 @@ export default function ScoreCard({ roast }: { roast: Roast }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
           <button
-            onClick={() =>
-              alert("PNG export runs via Satori in production (see BUILD_PLAN Phase 6).")
-            }
+            onClick={downloadPng}
             className="bg-primary text-background py-4 font-label-bold text-label-bold uppercase border-border-width border-primary hover:bg-primary-fixed-dim transition-all flex items-center justify-center gap-2 active:scale-95"
           >
             <span className="material-symbols-outlined">download</span> Download PNG
