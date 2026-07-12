@@ -1,10 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import ScoreCard from "./ScoreCard";
 import { loadRoast } from "@/lib/roastStore";
 import { DEFAULT_ROAST } from "@/lib/mock";
 import type { Roast } from "@/lib/types";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const apiRef = api as any;
 
 function hostnameOf(url: string) {
   try {
@@ -16,11 +21,38 @@ function hostnameOf(url: string) {
 
 export default function RoastView({ id }: { id: string }) {
   const [roast, setRoast] = useState<Roast | null>(null);
+  const convexRoast = useQuery(apiRef.roasts.getRoastByUrlId, { urlId: id });
 
+  // Load from sessionStorage first (instant — same tab)
   useEffect(() => {
     const found = loadRoast(id);
-    setRoast(found ?? { ...DEFAULT_ROAST, id });
+    if (found) setRoast(found);
   }, [id]);
+
+  // Fall back to Convex data (shareable links / incognito)
+  useEffect(() => {
+    if (convexRoast) {
+      setRoast({
+        id,
+        contentText: convexRoast.contentText,
+        sourceType: convexRoast.sourceType,
+        sourceUrl: convexRoast.sourceUrl ?? undefined,
+        creatorHandle: undefined,
+        score: {
+          fuMeter: convexRoast.fuMeter ?? 0,
+          originalityScore: convexRoast.originalityScore ?? 0,
+          fuScore: convexRoast.fuScore ?? 0,
+          verdict: convexRoast.verdict ?? "Analysis pending",
+          suspectedPrompt: convexRoast.suspectedPrompt ?? "Unknown",
+          breakdown: convexRoast.breakdown ?? [],
+        },
+        searchResults: convexRoast.searchResults ?? [],
+      });
+    } else if (convexRoast === null && !loadRoast(id)) {
+      // Convex returned null and no sessionStorage data — show default
+      setRoast({ ...DEFAULT_ROAST, id });
+    }
+  }, [convexRoast, id]);
 
   const confirmedSlop = (roast?.score.fuScore ?? 0) >= 60;
 

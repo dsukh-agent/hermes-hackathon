@@ -65,6 +65,43 @@ export const archiveRoast = mutation({
   },
 });
 
+export const saveCompleteRoast = mutation({
+  args: {
+    urlId: v.string(),
+    contentText: v.string(),
+    sourceType: v.union(v.literal("text"), v.literal("youtube")),
+    sourceUrl: v.optional(v.string()),
+    fuMeter: v.number(),
+    originalityScore: v.number(),
+    fuScore: v.number(),
+    verdict: v.string(),
+    suspectedPrompt: v.string(),
+    breakdown: v.array(v.string()),
+    searchResults: v.optional(v.any()),
+  },
+  handler: async (ctx, args) => {
+    const { urlId, searchResults, ...rest } = args;
+    await ctx.db.insert("roasts", {
+      ...rest,
+      urlId,
+      searchResults: searchResults ?? [],
+      status: "scored",
+      isArchived: false,
+    });
+  },
+});
+
+export const getRoastByUrlId = query({
+  args: { urlId: v.string() },
+  handler: async (ctx, args) => {
+    const roasts = await ctx.db
+      .query("roasts")
+      .filter((q) => q.eq(q.field("urlId"), args.urlId))
+      .collect();
+    return roasts.length > 0 ? roasts[0] : null;
+  },
+});
+
 export const addBounty = mutation({
   args: { id: v.id("roasts"), amount: v.number() },
   handler: async (ctx, args) => {

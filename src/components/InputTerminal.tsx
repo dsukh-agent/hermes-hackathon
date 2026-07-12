@@ -2,10 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 import LoadingOverlay from "./LoadingOverlay";
 import { saveRoast, newRoastId } from "@/lib/roastStore";
 import { getRandomCookedRoast } from "@/lib/mock";
 import type { AnalyzeResponse, Roast } from "@/lib/types";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const apiRef = api as any;
 
 type Mode = "URL" | "RAW";
 
@@ -49,6 +54,7 @@ function nowStr() {
 
 export default function InputTerminal() {
   const router = useRouter();
+  const saveRoastMutation = useMutation(apiRef.roasts.saveCompleteRoast);
   const [mode, setMode] = useState<Mode>("URL");
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");
@@ -136,6 +142,21 @@ export default function InputTerminal() {
       }
 
       saveRoast(roast);
+      saveRoastMutation({
+        urlId: id,
+        contentText: roast.contentText,
+        sourceType: roast.sourceType,
+        sourceUrl: roast.sourceUrl,
+        fuMeter: roast.score.fuMeter,
+        originalityScore: roast.score.originalityScore,
+        fuScore: roast.score.fuScore,
+        verdict: roast.score.verdict,
+        suspectedPrompt: roast.score.suspectedPrompt,
+        breakdown: roast.score.breakdown,
+        searchResults: roast.searchResults,
+      }).catch(() => {
+        // Convex save is a nice-to-have; sessionStorage is sufficient for current tab
+      });
 
       // Let the loading theatre play for at least ~2.6s
       const elapsed = Date.now() - started;
