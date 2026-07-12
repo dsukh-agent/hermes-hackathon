@@ -33,7 +33,7 @@ const QUOTES = [
     name: "Jason Mah",
     handle: "jason-mah",
     role: "Stealth Founder",
-    text: "Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.",
+    text: "Rahul said 'try my app'. I did. Now my entire LinkedIn history is a public FU score.",
     dp: "https://media.licdn.com/dms/image/v2/D5603AQEVFmJevxjrMQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1688093657936?e=2147483647&v=beta&t=sDLs7c4qL8mO1wTAw5slImNIxk7jnHDtfoWqg9_3umo"
   },
   {
@@ -68,7 +68,7 @@ const QUOTES = [
     name: "Aaron Xavier",
     handle: "aaronxavier",
     role: "Engineer, Apple",
-    text: "Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.",
+    text: "Dipesh and Rahul have successfully destroyed my imposter syndrome. I'm actually just a fraud. 10/10.",
     dp: "https://media.licdn.com/dms/image/v2/C5603AQE2mcAHKPqxfQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1651412370900?e=2147483647&v=beta&t=Geu-YwmcNWPH70BwgLZzxXO_cVJSiT6uQGBlCQIl51c"
   }
 ];
