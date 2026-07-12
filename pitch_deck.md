@@ -25,14 +25,14 @@
 ### FU — Evolving a Joke into a Public Protocol
 We built a dual-sided ecosystem that leverages viral outrage to fund truth and original writing.
 * **1. For the Public (FU - Outrage Board):** An interactive, crowd-funded Wall of Shame. Users paste a text block or YouTube URL to roast it, scoring it on AI-ness, Plagiarism, and Cringe.
-* **2. For Creators (FU - Fully Unique):** A positive publishing protocol. Verified human creators showcase their low "Slop Scores" with live badges, proving 100% human authenticity.
+* **2. For Creators (FU - Fully Unique):** A positive publishing protocol. Verified human creators showcase their low "FU Scores" with live badges, proving 100% human authenticity.
 
 ---
 
 ## SLIDE 4: THE VIRAL PRODUCT LOOP
 ### How the "Outrage Bounty" Works
 1. **Nomination:** Anyone can nominate an insufferable piece of content for a roast.
-2. **Analysis:** The pipeline analyzes the content using GPT-4o and LinkUp Web Search.
+2. **Analysis:** The pipeline analyzes the content using OpenRouter (Hermes 3 405b / round-robin models) and LinkUp Web Search.
 3. **Outrage Pooling:** Users who agree the post is garbage put down micro-payments (e.g., $1 or $10) to grow the public "Outrage Bounty Pool" on that grifter.
 4. **Social Outcry:** The grifter is tagged on social media: *"A $500 Outrage Bounty has been placed on your post. Clear your name or remain on the Wall of Shame."*
 
@@ -42,7 +42,7 @@ We built a dual-sided ecosystem that leverages viral outrage to fund truth and o
 ### How Grifters Escape the Wall of Shame
 We don't just mock people; we provide an escape hatch.
 * **The "Proof of Humanity" Claim:** The target can submit an unedited video, handwritten draft, or research trail to prove they wrote the content themselves.
-* **The Redemption Arc:** If their proof is verified, their Originality Score rises, their slop rating drops, and they claim the Outrage Bounty pool!
+* **The Redemption Arc:** If their proof is verified, their Originality Score rises, their FU Score drops, and they claim the Outrage Bounty pool!
 * **The Result:** We gamify the verification of real, original human writing.
 
 ---
@@ -57,9 +57,9 @@ We don't just mock people; we provide an escape hatch.
 
 ## SLIDE 7: TECHNICAL INNOVATION
 ### High-Performance, Reactive State Machine
-* **Next.js & Cloudflare Edge:** Highly scalable, localized frontend.
+* **Next.js & Vercel:** Highly scalable, localized frontend.
 * **Convex Real-Time Database:** Operates as a reactive state machine. When a roast starts, the UI seamlessly polls background steps (`extracting_transcript` ➔ `scanning_plagiarism` ➔ `scoring` ➔ `scored`) without locking browser threads or triggering serverless timeouts.
-* **LinkUp Plagiarism Search:** Extracts distinct claims from text, searches the web, and constructs an objective lineage graph of where the ideas were copied from.
+* **LinkUp Plagiarism Search & Deep Scraping:** Not only extracts distinct claims from text to construct an objective lineage graph of copied ideas, but also perfectly scrapes content directly from LinkedIn and X (Twitter) URLs.
 * **Client-Side Canvas Export:** Bypasses heavy native C++ server dependencies (like Sharp) by rendering and downloading viral PNG cards directly inside the user's browser.
 
 ---
