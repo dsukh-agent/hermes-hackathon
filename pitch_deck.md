@@ -41,17 +41,17 @@ We built a single, focused product that lets anyone analyze and shame AI-generat
 ---
 
 ## SLIDE 5: THE GLOBAL SLOP LEADERBOARD
-### Monetization Powered by Outrage & Paranoia
-* **The Outrage Bounty Pool (Prototype):** Users who agree a post is garbage can add "bounty" amounts (e.g., +$10) to grow a public bounty pool on that entry in the **Global Slop Leaderboard**. Real-time updates powered by Convex.
-* **Pay-to-Archive (Planned):** A future feature where embarrassed targets can pay a fee to archive their roast and remove it from the leaderboard. The Convex `archiveRoast` mutation is already built, awaiting payment integration.
-* **Slop Bomb (Future Vision):** Send a target their own roast anonymously. They'd have 24 hours to pay a de-escalation ransom or it gets permanently published.
+### Public Shaming as a Service
+* **The Global Slop Leaderboard:** Every roast generates a public entry ranked by FU Score, originality, and slop percentage — visible to anyone on the Leaderboard page.
+* **Slop Bomb (Feature):** Users can drop an anonymous "slop bomb" on a target by pasting their URL and sharing the verdict directly. No payment, no friction — just pure, public accountability.
+* **Shareable Verdict Cards:** Every roast comes with a One-Click PNG download and a copyable `/roast/[id]` URL. The target's humiliation is a single tap away from going viral.
 
 ---
 
 ## SLIDE 6: TECHNICAL INNOVATION
 ### High-Performance, Resilient Architecture
 * **Next.js & Vercel:** Highly scalable, localized frontend running on Vercel Edge.
-* **Convex Real-Time Database:** Operates as a reactive state machine for the Global Slop Leaderboard, tracking roasts, bounties, and live status globally without locking threads.
+* **Convex Real-Time Database:** Operates as a reactive state machine for the Global Slop Leaderboard, tracking roasts, scores, and live status globally without locking threads.
 * **LinkUp Plagiarism Search & Deep Scraping:** Extracts distinct claims from text to construct an objective lineage graph of copied ideas, and scrapes content directly from LinkedIn and X (Twitter) URLs.
 * **Resilient AI Routing:** An intelligent round-robin fallback system tries up to 5 OpenRouter models. If all fail, a built-in "cooked" mock engine still returns a savage verdict — the show always goes on.
 * **Client-Side Canvas Export:** Bypasses heavy native C++ server dependencies by rendering and downloading viral PNG cards directly inside the user's browser via `html-to-image`.
@@ -81,7 +81,7 @@ Our AI pipeline doesn't just score slop—it **reconstructs the exact instructio
 
 ## SLIDE 9: CONCLUSION
 ### Join the Anti-Slop Revolution
-* **FU** is more than a roast app—it is the first **Reputation Protocol for the AI Era**.
-* It turns public cynicism into a self-funding business model.
-* It defends human writers by making originality profitable, and automation expensive.
+* **FU** is a simple, brutal tool: paste content, get roasted, share the verdict.
+* It defends human writers by exposing synthetic garbage and celebrating authentic voices.
+* Every verdict card is a public record — making slop costly in reputation, not dollars.
 * **Our Motto:** Bring finished work, not problems.
