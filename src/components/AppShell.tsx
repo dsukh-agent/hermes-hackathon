@@ -38,7 +38,7 @@ export default function AppShell({
             href="/"
             className="font-headline-lg text-[24px] md:text-[32px] font-black tracking-tighter text-primary uppercase"
           >
-            SLOPSCORE
+            FU
           </Link>
           <nav className="hidden md:flex gap-6">
             {topNav.map((item) => (
@@ -123,7 +123,7 @@ export default function AppShell({
       {/* Footer */}
       <footer className="w-full bg-surface border-t-border-width-heavy border-primary flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 z-50">
         <div className="font-code-sm text-primary uppercase text-[10px] md:text-code-sm">
-          © 2026 SLOP-SCORE. NO AI WAS CONSULTED.
+          © 2026 FU. NO AI WAS CONSULTED.
         </div>
         <div className="flex gap-4 md:gap-8 font-code-sm text-primary uppercase text-[10px] md:text-code-sm">
           <a className="hover:bg-secondary-container hover:text-on-secondary-container px-2" href="#">

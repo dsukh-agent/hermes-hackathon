@@ -28,8 +28,19 @@ const FEED_LOGS = [
 ];
 
 function deriveHandle(url: string) {
-  const m = url.match(/(youtu\.be\/|v=)([\w-]{6,})/);
-  return m ? `@yt_${m[2].slice(0, 6)}` : undefined;
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    const m = url.match(/(?:youtu\.be\/|v=)([\w-]{6,})/);
+    return m ? `@yt_${m[1].slice(0, 6)}` : undefined;
+  }
+  if (url.includes("x.com") || url.includes("twitter.com")) {
+    const m = url.match(/(?:x\.com|twitter\.com)\/([A-Za-z0-9_]+)/);
+    return m ? `@${m[1]}` : undefined;
+  }
+  if (url.includes("linkedin.com")) {
+    const m = url.match(/linkedin\.com\/in\/([A-Za-z0-9_-]+)/);
+    return m ? `@${m[1]}` : undefined;
+  }
+  return undefined;
 }
 
 function nowStr() {
@@ -77,11 +88,11 @@ export default function InputTerminal() {
     }
     if (mode === "URL") {
       if (!sourceUrl) {
-        setError("NO_PAYLOAD — ENTER A YOUTUBE URL");
+        setError("NO_PAYLOAD — ENTER A URL");
         return;
       }
-      if (!sourceUrl.includes("youtube.com") && !sourceUrl.includes("youtu.be")) {
-        setError("UNSUPPORTED_PROTOCOL — USE RAW_TEXT_MODE FOR LINKEDIN/X");
+      if (!sourceUrl.includes("youtube.com") && !sourceUrl.includes("youtu.be") && !sourceUrl.includes("linkedin.com") && !sourceUrl.includes("x.com") && !sourceUrl.includes("twitter.com")) {
+        setError("UNSUPPORTED_PROTOCOL — ENTER A YOUTUBE, LINKEDIN, OR X URL");
         return;
       }
     }
@@ -92,15 +103,18 @@ export default function InputTerminal() {
     const started = Date.now();
     const id = newRoastId();
 
+    const isYoutube = mode === "URL" && (sourceUrl.includes("youtube.com") || sourceUrl.includes("youtu.be"));
+    const apiSourceType = mode === "RAW" ? "text" : (isYoutube ? "youtube" : "social_url");
+
     try {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-          mode === "URL"
-            ? { sourceType: "youtube", sourceUrl }
-            : { sourceType: "text", contentText }
-        ),
+        body: JSON.stringify({ 
+          sourceType: apiSourceType,
+          sourceUrl: mode === "URL" ? sourceUrl : undefined,
+          contentText: mode === "RAW" ? contentText : undefined
+        }),
       });
 
       let roast: Roast;
@@ -167,7 +181,7 @@ export default function InputTerminal() {
                   : "text-primary hover:bg-surface-container-highest"
               }`}
             >
-              URL_MODE (YOUTUBE)
+              URL_MODE (YOUTUBE / X / LINKEDIN)
             </button>
             <button
               onClick={() => setMode("RAW")}
@@ -192,14 +206,14 @@ export default function InputTerminal() {
             {mode === "URL" ? (
               <div className="flex-grow flex flex-col justify-center">
                 <label className="font-label-bold text-[12px] uppercase mb-2 opacity-50">
-                  INPUT YOUTUBE URL FOR TRANSCRIPT SCRAPING
+                  INPUT YOUTUBE, X, OR LINKEDIN URL FOR SCRAPING
                 </label>
                 <input
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && runAnalysis()}
                   className="w-full bg-transparent border-border-width border-primary p-4 font-score-display text-[24px] text-primary-fixed-dim placeholder:text-surface-container-highest focus:border-primary-fixed-dim outline-none"
-                  placeholder="https://youtube.com/watch?v=..."
+                  placeholder="https://..."
                   type="text"
                 />
               </div>

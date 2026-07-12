@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 export const metadata = {
-  title: "GLOBAL_SLOP_LEADERBOARD // SlopScore",
+  title: "GLOBAL_SLOP_LEADERBOARD // FU",
 };
 
 const LeaderboardContent = dynamic(() => import("@/components/LeaderboardContent"), {

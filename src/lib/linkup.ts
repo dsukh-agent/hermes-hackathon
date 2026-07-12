@@ -1,3 +1,46 @@
+export async function extractWithLinkUp(url: string, linkupApiKey: string): Promise<string> {
+  if (!linkupApiKey) {
+    throw new Error("No LINKUP_API_KEY provided for URL extraction.");
+  }
+  
+  try {
+    const response = await fetch("https://api.linkup.so/v1/search", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${linkupApiKey}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        q: url,
+        depth: "standard",
+        outputType: "searchResults"
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`LinkUp API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (data.results && data.results.length > 0) {
+      // Find the exact match or take the first
+      const match = data.results.find((r: any) => r.url.includes(url) || url.includes(r.url)) || data.results[0];
+      if (match && match.content) {
+        // Clean up the text by removing common boilerplate from LinkedIn/X if present
+        let text = match.content;
+        text = text.replace(/## LinkedIn respects your privacy[\s\S]*?(?=Skip to main content|Abhijeet Kumar’s Post)/i, "");
+        text = text.replace(/Agree & Join LinkedIn[\s\S]*?(?=# |Skip to main content)/i, "");
+        return text.substring(0, 4000); // cap at 4000 chars
+      }
+    }
+    
+    throw new Error("No content found for this URL via LinkUp extraction.");
+  } catch (error) {
+    console.error("LinkUp Extraction Error:", error);
+    throw error;
+  }
+}
+
 export async function extractKeyPhrases(content: string, hermesApiKey: string): Promise<string[]> {
   if (!hermesApiKey) {
     console.warn("No HERMES_API_KEY provided, returning mock phrases.");

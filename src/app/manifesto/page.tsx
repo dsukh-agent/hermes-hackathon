@@ -2,7 +2,7 @@ import Link from "next/link";
 import AppShell from "@/components/AppShell";
 
 export const metadata = {
-  title: "THE MANIFESTO // SlopScore",
+  title: "THE MANIFESTO // FU",
 };
 
 export default function ManifestoPage() {
@@ -32,7 +32,7 @@ export default function ManifestoPage() {
               <div className="border-border-width-heavy border-primary p-6 bg-primary text-background">
                 <span className="font-code-sm text-code-sm font-bold mb-4 block">[ANALYSIS]</span>
                 <p className="font-body-md font-bold">
-                  SLOPSCORE is not a filter. It is a forensic autopsy of the modern web. We identify
+                  FU is not a filter. It is a forensic autopsy of the modern web. We identify
                   the synthetic rot so original creators can breathe again.
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function ManifestoPage() {
                   {
                     icon: "history",
                     title: "PERMANENT LEDGER OF SHAME",
-                    body: "The SlopScore is forever. Once a domain is flagged as a synthetic mill, the record remains.",
+                    body: "The FU Score is forever. Once a domain is flagged as a synthetic mill, the record remains.",
                   },
                 ].map((f) => (
                   <div

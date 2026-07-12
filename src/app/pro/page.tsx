@@ -2,7 +2,7 @@ import AppShell from "@/components/AppShell";
 import LiveTerminalFeed from "@/components/LiveTerminalFeed";
 
 export const metadata = {
-  title: "UPGRADE // SlopScore Pro",
+  title: "UPGRADE // FU Pro",
 };
 
 const features = [

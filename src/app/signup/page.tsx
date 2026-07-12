@@ -1,7 +1,7 @@
 import AppShell from "@/components/AppShell";
 
 export const metadata = {
-  title: "ACCESS RESTRICTED // SlopScore",
+  title: "ACCESS RESTRICTED // FU",
 };
 
 const perks = [

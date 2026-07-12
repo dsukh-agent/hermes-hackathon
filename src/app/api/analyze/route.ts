@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { extractYouTubeTranscript } from "@/lib/youtube";
-import { extractKeyPhrases, runOriginalityScan } from "@/lib/linkup";
+import { extractKeyPhrases, runOriginalityScan, extractWithLinkUp } from "@/lib/linkup";
 import { generateFUMeter } from "@/lib/hermes";
 
 export async function POST(request: Request) {
@@ -9,6 +9,10 @@ export async function POST(request: Request) {
     const { contentText, sourceType, sourceUrl } = body;
 
     let textToAnalyze = contentText || "";
+    
+    // Read API keys from environment
+    const hermesApiKey = process.env.OPENROUTER_API_KEY || process.env.HERMES_API_KEY || process.env.OPENAI_API_KEY || "";
+    const linkupApiKey = process.env.LINKUP_API_KEY || "";
 
     if (sourceType === "youtube" && sourceUrl) {
       try {
@@ -16,6 +20,15 @@ export async function POST(request: Request) {
       } catch (error: unknown) {
         return NextResponse.json(
           { error: "Failed to extract YouTube transcript", details: error instanceof Error ? error.message : "Unknown error" },
+          { status: 400 }
+        );
+      }
+    } else if (sourceType === "social_url" && sourceUrl) {
+      try {
+        textToAnalyze = await extractWithLinkUp(sourceUrl, linkupApiKey);
+      } catch (error: unknown) {
+        return NextResponse.json(
+          { error: "Failed to extract content from social URL", details: error instanceof Error ? error.message : "Unknown error" },
           { status: 400 }
         );
       }
