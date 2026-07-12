@@ -11,8 +11,9 @@ export async function POST(request: Request) {
     let textToAnalyze = contentText || "";
     
     // Read API keys from environment
-    const hermesApiKey = process.env.OPENROUTER_API_KEY || process.env.HERMES_API_KEY || process.env.OPENAI_API_KEY || "";
-    const linkupApiKey = process.env.LINKUP_API_KEY || "";
+    const hermesApiKey = (process.env.OPENROUTER_API_KEY || process.env.HERMES_API_KEY || process.env.OPENAI_API_KEY || "").trim();
+    const linkupApiKey = (process.env.LINKUP_API_KEY || "").trim();
+
 
     if (sourceType === "youtube" && sourceUrl) {
       try {
@@ -58,8 +59,8 @@ export async function POST(request: Request) {
     // install `convex` in the Next.js backend and patch the document at each step below.
 
     // Phase 3: LinkUp Originality Scan
-    // 1. Extract Key Phrases
-    const phrases = await extractKeyPhrases(textToAnalyze, hermesApiKey);
+    // 1. Extract Key Phrases (regex-based, no LLM call needed - saves rate limits for scoring)
+    const phrases = extractKeyPhrases(textToAnalyze);
 
     // 2. Run Originality Scan
     const searchResults = await runOriginalityScan(phrases, linkupApiKey);

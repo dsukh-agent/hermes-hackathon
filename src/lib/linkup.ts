@@ -41,68 +41,7 @@ export async function extractWithLinkUp(url: string, linkupApiKey: string): Prom
   }
 }
 
-export async function extractKeyPhrases(content: string, hermesApiKey: string): Promise<string[]> {
-  if (!hermesApiKey) {
-    console.warn("No HERMES_API_KEY provided, returning mock phrases.");
-    return ["Mock distinctive claim 1", "Mock distinctive claim 2", "Mock distinctive claim 3"];
-  }
-
-  const MODELS = [
-    "tencent/hy3:free",
-    "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "poolside/laguna-m.1:free",
-    "liquid/lfm-2.5-1.2b-instruct:free"
-  ];
-  const shuffledModels = [...MODELS].sort(() => Math.random() - 0.5);
-
-  let parsedResult = null;
-
-  for (const model of shuffledModels) {
-    try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${hermesApiKey}`,
-          "HTTP-Referer": "https://fu.app",
-          "X-Title": "FU App",
-        },
-        body: JSON.stringify({
-          model: model,
-          messages: [
-            {
-              role: "system",
-              content: "Extract 3–5 key claims or distinctive phrases from this content. Return ONLY a JSON object containing a 'phrases' key with an array of strings."
-            },
-            {
-              role: "user",
-              content: content.substring(0, 4000)
-            }
-          ],
-          response_format: { type: "json_object" }
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const contentText = data.choices[0].message.content;
-        try {
-          parsedResult = JSON.parse(contentText);
-          break;
-        } catch {
-          console.warn(`Failed to parse key phrases JSON from model ${model}`);
-        }
-      } else {
-        console.warn(`LLM API failed with model ${model}: ${response.status}`);
-      }
-    } catch (error) {
-      console.warn(`Error extracting key phrases with model ${model}:`, error);
-    }
-  }
-
-  if (parsedResult && parsedResult.phrases && Array.isArray(parsedResult.phrases)) {
-    return parsedResult.phrases;
-  }
+export function extractKeyPhrases(content: string): string[] {
   return fallbackPhrases(content);
 }
 

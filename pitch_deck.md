@@ -1,14 +1,14 @@
-# PITCH DECK: FU (Fully Unique & Outrage Bounties)
-## Hackathon Presentation Outline & Source Document for Slide Generation
+# PITCH DECK: FU — The AI Slop Roaster
+## Hackathon Presentation Outline
 *Designed for Google NotebookLM, Slides, or Presentation Builders*
 
 ---
 
 ## SLIDE 1: TITLE SLIDE
-### The Grift Detector & Outrage Economy
-* **Project Name:** FU (Dual Meaning: "Fully Unique" or "Fuck You, Slop!")
-* **Sub-title:** The crowd-funded Wall of Shame for AI-generated corporate slop and ghostwritten influencer hype.
-* **Tagline:** Nominate slop. Pool bounties. Verify humanity.
+### The AI Slop Detector & Outrage Board
+* **Project Name:** FU
+* **Sub-title:** A savage AI-slop detector. Paste a URL or text, get a brutal verdict card exposing how much of your content is synthetic garbage.
+* **Tagline:** Feed the machine. Expose the mediocrity.
 * **Track:** Virality Track (Hermes Buildathon)
 
 ---
@@ -22,69 +22,64 @@
 ---
 
 ## SLIDE 3: THE SOLUTION
-### FU — Evolving a Joke into a Public Protocol
-We built a dual-sided ecosystem that leverages viral outrage to fund truth and original writing.
-* **1. For the Public (FU - Outrage Board):** An interactive, crowd-funded Wall of Shame. Users paste a text block or YouTube URL to roast it, scoring it on AI-ness, Plagiarism, and Cringe.
-* **2. For Creators (FU - Fully Unique):** A positive publishing protocol. Verified human creators showcase their low "FU Scores" with live badges, proving 100% human authenticity.
+### FU — A Savage Verdict Machine
+We built a single, focused product that lets anyone analyze and shame AI-generated slop.
+* **1. The Analyzer:** Users paste a text block, YouTube URL, or social media link (LinkedIn, X). The app extracts the content, runs it through an AI-detection pipeline, and returns a brutal verdict card.
+* **2. The Verdict Card:** A shareable "Spotify Wrapped" style result showing AI Slop %, Originality Index, an overall FU Score, a savage one-line verdict, a reconstructed prompt (what the human likely typed into ChatGPT), and an autopsy report of structural violations.
+* **3. Human-First Scoring:** The scoring model is explicitly prompted to reward deeply personal, specific, authentic writing with low scores — making a low FU Score a genuine badge of human originality.
 
 ---
 
-## SLIDE 4: THE VIRAL PRODUCT LOOP
-### How the "Outrage Bounty" Works
-1. **Nomination:** Anyone can nominate an insufferable piece of content for a roast.
-2. **Analysis:** The pipeline analyzes the content using OpenRouter (Hermes 3 405b / round-robin models) and LinkUp Web Search.
-3. **Outrage Pooling:** Users who agree the post is garbage put down micro-payments (e.g., $1 or $10) to grow the public "Outrage Bounty Pool" on that grifter.
-4. **Social Outcry:** The grifter is tagged on social media: *"A $500 Outrage Bounty has been placed on your post. Clear your name or remain on the Wall of Shame."*
+## SLIDE 4: THE VIRAL PRODUCT LOOP & NEW WORKFLOW
+### How the "Slop Roaster" Works
+1. **Intelligent Ingestion:** Drop a YouTube, X (Twitter), or LinkedIn URL into the Terminal, or paste raw text. 
+2. **Deep Scraping:** Using LinkUp Search APIs and YouTube Transcript hooks, we bypass anti-bot measures and extract the exact text of the post or video natively.
+3. **Round-Robin AI Analysis:** The content is routed through a resilient OpenRouter pipeline, distributing loads across `tencent/hy3:free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `poolside/laguna-m.1:free`, and `liquid/lfm-2.5-1.2b-instruct:free`, with an ultimate fallback to `nousresearch/hermes-3-llama-3.1-405b`.
+4. **Originality Check:** We extract key phrases and pump them through LinkUp to detect blatant plagiarism across the web.
+5. **The Verdict:** The engine generates a brutal, shareable verdict card exposing their exact brand of delusion, with export options (PNG download, copy URL).
 
 ---
 
-## SLIDE 5: THE HUMANITY CLEARINGHOUSE
-### How Grifters Escape the Wall of Shame
-We don't just mock people; we provide an escape hatch.
-* **The "Proof of Humanity" Claim:** The target can submit an unedited video, handwritten draft, or research trail to prove they wrote the content themselves.
-* **The Redemption Arc:** If their proof is verified, their Originality Score rises, their FU Score drops, and they claim the Outrage Bounty pool!
-* **The Result:** We gamify the verification of real, original human writing.
+## SLIDE 5: THE GLOBAL SLOP LEADERBOARD
+### Monetization Powered by Outrage & Paranoia
+* **The Outrage Bounty Pool (Prototype):** Users who agree a post is garbage can add "bounty" amounts (e.g., +$10) to grow a public bounty pool on that entry in the **Global Slop Leaderboard**. Real-time updates powered by Convex.
+* **Pay-to-Archive (Planned):** A future feature where embarrassed targets can pay a fee to archive their roast and remove it from the leaderboard. The Convex `archiveRoast` mutation is already built, awaiting payment integration.
+* **Slop Bomb (Future Vision):** Send a target their own roast anonymously. They'd have 24 hours to pay a de-escalation ransom or it gets permanently published.
 
 ---
 
-## SLIDE 6: THE DYSTOPIAN BUSINESS MODEL
-### Monetization Powered by Reputation Management
-* **1. "Pay-to-Bury" Extortion Fee ($49):** High-profile targets suffering from public embarrassment can pay a flat $49 ransom fee to immediately archive their card, remove it from the Leaderboard, and block search engine indexing. (Extremely high margin B2C).
-* **2. Micro-Bounties:** Users pay tiny fees to cast outrage votes or up-roast posts, instantly covering LLM and Search API costs.
-* **3. B2B Verified Human Badges ($19/mo):** Content agencies and writers pay a monthly subscription to get verified human-written certificates and live API widgets for their substacks or newsletters.
+## SLIDE 6: TECHNICAL INNOVATION
+### High-Performance, Resilient Architecture
+* **Next.js & Vercel:** Highly scalable, localized frontend running on Vercel Edge.
+* **Convex Real-Time Database:** Operates as a reactive state machine for the Global Slop Leaderboard, tracking roasts, bounties, and live status globally without locking threads.
+* **LinkUp Plagiarism Search & Deep Scraping:** Extracts distinct claims from text to construct an objective lineage graph of copied ideas, and scrapes content directly from LinkedIn and X (Twitter) URLs.
+* **Resilient AI Routing:** An intelligent round-robin fallback system tries up to 5 OpenRouter models. If all fail, a built-in "cooked" mock engine still returns a savage verdict — the show always goes on.
+* **Client-Side Canvas Export:** Bypasses heavy native C++ server dependencies by rendering and downloading viral PNG cards directly inside the user's browser via `html-to-image`.
 
 ---
 
-## SLIDE 7: TECHNICAL INNOVATION
-### High-Performance, Reactive State Machine
-* **Next.js & Vercel:** Highly scalable, localized frontend.
-* **Convex Real-Time Database:** Operates as a reactive state machine. When a roast starts, the UI seamlessly polls background steps (`extracting_transcript` ➔ `scanning_plagiarism` ➔ `scoring` ➔ `scored`) without locking browser threads or triggering serverless timeouts.
-* **LinkUp Plagiarism Search & Deep Scraping:** Not only extracts distinct claims from text to construct an objective lineage graph of copied ideas, but also perfectly scrapes content directly from LinkedIn and X (Twitter) URLs.
-* **Client-Side Canvas Export:** Bypasses heavy native C++ server dependencies (like Sharp) by rendering and downloading viral PNG cards directly inside the user's browser.
-
----
-
-## SLIDE 8: DE-LAUNDERED PROMPT REVEAL
+## SLIDE 7: DE-LAUNDERED PROMPT REVEAL
 ### Stripping Away the Illusion
-Our proprietary AI pipeline doesn't just score slop—it **reconstructs the exact instructions** the creator typed into ChatGPT.
+Our AI pipeline doesn't just score slop—it **reconstructs the exact instructions** the creator likely typed into ChatGPT.
 * **Example Target Post:** *"Woke up at 4:30 AM. Cold plunge. 2 hours of deep work. Always align your holistic synergy."*
 * **De-Laundered Prompt Revealed:** *"Write an insufferable LinkedIn morning routine listicle using words like 'holistic' and 'synergy' to make readers feel inadequate."*
-* **Impact:** Nothing humiliates a corporate grifter more than revealing their simple prompts to the public.
+* **Autopsy Report:** The card lists 3 structural violations (e.g., "Used 'leverage' and 'synergy' unironically.").
 
 ---
 
-## SLIDE 9: TRACTION & VIRALITY FORECAST
-### Low Cost, Exponential Growth
-* **Zero Marketing Cost:** Every roast card downloaded contains a shareable URL and creator handles, turning every angry target and laughing reader into a referral agent.
-* **Low Server Overhead:** Scheduled background tasks, caching of matching claims, and browser-based rendering keep operational costs near-zero.
-* **Success Metric at 5 PM:** 
-  * Live reactive web app deployed.
-  * Interactive, stateful Simulator mode fully functional.
-  * Verified Convex state-machine database architecture.
+## SLIDE 8: TRACTION & VIRALITY FORECAST
+### Zero Cost, Exponential Growth
+* **The "Victims Log" Testimonials:** To kickstart virality, we pre-populated our landing page with hilarious, real LinkedIn connections and avatars of founders/VCs (Prabhkiran Singh, David Sneider, etc.) reacting to being roasted by FU.
+* **Zero Marketing Cost:** Every roast card downloaded contains a shareable URL (`/roast/[id]`) and creator handles, turning every angry target and laughing reader into a referral agent.
+* **Live Today:** 
+  * Live Vercel web app deployed.
+  * Real-time Convex database powering the leaderboard.
+  * OpenRouter + LinkUp API integration (with graceful mock fallback when keys are unavailable — always demo-ready).
+  * Client-side sessionStorage persistence for instant page reloads.
 
 ---
 
-## SLIDE 10: CONCLUSION
+## SLIDE 9: CONCLUSION
 ### Join the Anti-Slop Revolution
 * **FU** is more than a roast app—it is the first **Reputation Protocol for the AI Era**.
 * It turns public cynicism into a self-funding business model.

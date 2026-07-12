@@ -125,19 +125,21 @@ export async function generateFUMeter(content: string, searchResults: Record<str
       "poolside/laguna-m.1:free",
       "liquid/lfm-2.5-1.2b-instruct:free"
     ];
-    const shuffledModels = [...MODELS].sort(() => Math.random() - 0.5);
+    const freeModel = MODELS[Math.floor(Math.random() * MODELS.length)];
 
-    let parsedResult = null;
-
-    for (const model of shuffledModels) {
+    const tryModel = async (model: string) => {
       try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+
         const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          signal: controller.signal,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${hermesApiKey}`,
-            "HTTP-Referer": "https://fu.app", // Optional but recommended by OpenRouter
-            "X-Title": "FU App", // Optional but recommended by OpenRouter
+            "HTTP-Referer": "https://fu.app",
+            "X-Title": "FU App",
           },
           body: JSON.stringify({
             model: model,
@@ -151,6 +153,7 @@ CRITICAL RULES FOR SCORING (The "Geometric Quality Gate"):
 2. Structural Penalties: Dock points for perfect 3-part listicles, opening paragraphs that hedge ("While opinions vary...", "It's important to note..."), and concluding paragraphs starting with "In conclusion", "Ultimately", or "At the end of the day".
 3. AI Politeness & Perfection: If the grammar is suspiciously perfect, or it uses phrases like "hope this helps" or "feel free to", flag it. Humans make mistakes; AI is too competent.
 4. "Smoking Guns": If the text reads like Claude laundering its own output, set the FU Meter extremely high (>90).
+5. If the content is highly personal, specific, lacks buzzwords, and reads authentically, give it a very LOW score (e.g., 5-20).
 
 OUTPUT FORMAT:
 You MUST return ONLY a valid JSON object with the following schema:
@@ -167,26 +170,35 @@ You MUST return ONLY a valid JSON object with the following schema:
                 role: "user",
                 content: `Content to analyze:\n${content.substring(0, 4000)}\n\nOriginality Search Results:\n${JSON.stringify(searchResults, null, 2)}`
               }
-            ],
-            response_format: { type: "json_object" }
+            ]
           }),
         });
+
+        clearTimeout(timeout);
 
         if (response.ok) {
           const data = await response.json();
           const contentText = data.choices[0].message.content;
-          try {
-            parsedResult = JSON.parse(contentText);
-            break; // Success! Break the loop
-          } catch {
-            console.warn(`Failed to parse JSON from model ${model}`);
+          const jsonMatch = contentText.match(/\{[\s\S]*\}/);
+          const jsonStr = jsonMatch ? jsonMatch[0] : contentText;
+          const result = JSON.parse(jsonStr);
+          if (result && typeof result.fuMeter === 'number') {
+            return result;
           }
         } else {
           console.warn(`generateFUMeter API error with model ${model}: ${response.status} ${response.statusText}`);
         }
-      } catch (error) {
+        return null;
+      } catch (error: unknown) {
         console.warn(`Error generating FU Meter with model ${model}:`, error);
+        return null;
       }
+    };
+
+    // Try one free model first (fast/cheap), fall back to hermes 405b if it fails
+    let parsedResult = await tryModel(freeModel);
+    if (!parsedResult) {
+      parsedResult = await tryModel("nousresearch/hermes-3-llama-3.1-405b");
     }
 
     if (!parsedResult) {
