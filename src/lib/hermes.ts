@@ -119,21 +119,32 @@ export async function generateFUMeter(content: string, searchResults: Record<str
     return cooked;
   }
 
-  try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${hermesApiKey}`,
-        "HTTP-Referer": "https://fu.app", // Optional but recommended by OpenRouter
-        "X-Title": "FU App", // Optional but recommended by OpenRouter
-      },
-      body: JSON.stringify({
-        model: "nousresearch/hermes-3-llama-3.1-405b", // Upgraded to Hermes 3 405b for reliable JSON extraction
-        messages: [
-          {
-            role: "system",
-            content: `You are a cynical, chain-smoking senior editor who absolutely hates LinkedIn hustle culture, thought leaders, and ghostwritten generic content. You believe the best way to catch AI slop is with more AI slop. Your job is to analyze content and assign a "FU Meter" based on how likely it is to be AI-generated garbage.
+    const MODELS = [
+      "tencent/hy3:free",
+      "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "poolside/laguna-m.1:free",
+      "liquid/lfm-2.5-1.2b-instruct:free"
+    ];
+    const shuffledModels = [...MODELS].sort(() => Math.random() - 0.5);
+
+    let parsedResult = null;
+
+    for (const model of shuffledModels) {
+      try {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${hermesApiKey}`,
+            "HTTP-Referer": "https://fu.app", // Optional but recommended by OpenRouter
+            "X-Title": "FU App", // Optional but recommended by OpenRouter
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              {
+                role: "system",
+                content: `You are a cynical, chain-smoking senior editor who absolutely hates LinkedIn hustle culture, thought leaders, and ghostwritten generic content. You believe the best way to catch AI slop is with more AI slop. Your job is to analyze content and assign a "FU Meter" based on how likely it is to be AI-generated garbage.
 
 CRITICAL RULES FOR SCORING (The "Geometric Quality Gate"):
 1. The "Buzzword-to-Content Ratio" (BCR): Aggressively penalize the use of words like: "robust", "resilient", "enterprise-grade", "holistic", "delve", "fast-paced landscape", "synergy", "unlock your potential", "testament to".
@@ -151,40 +162,43 @@ You MUST return ONLY a valid JSON object with the following schema:
   "suspectedPrompt": string (The exact, humiliating prompt the user probably typed to generate this garbage. Example: "Write a preachy 3-part listicle about B2B sales but make it sound like a deeply personal revelation."),
   "breakdown": string[] (Exactly 3 bullet points explicitly citing the structural violations found in the text. Example: "Used the word 'holistic' unironically in paragraph 2.")
 }`
-          },
-          {
-            role: "user",
-            content: `Content to analyze:\n${content.substring(0, 4000)}\n\nOriginality Search Results:\n${JSON.stringify(searchResults, null, 2)}`
-          }
-        ],
-        response_format: { type: "json_object" }
-      }),
-    });
+              },
+              {
+                role: "user",
+                content: `Content to analyze:\n${content.substring(0, 4000)}\n\nOriginality Search Results:\n${JSON.stringify(searchResults, null, 2)}`
+              }
+            ],
+            response_format: { type: "json_object" }
+          }),
+        });
 
-    if (!response.ok) {
-       console.warn(`generateFUMeter API error: ${response.status} ${response.statusText}`);
-       return getCookedAnalysis();
+        if (response.ok) {
+          const data = await response.json();
+          const contentText = data.choices[0].message.content;
+          try {
+            parsedResult = JSON.parse(contentText);
+            break; // Success! Break the loop
+          } catch {
+            console.warn(`Failed to parse JSON from model ${model}`);
+          }
+        } else {
+          console.warn(`generateFUMeter API error with model ${model}: ${response.status} ${response.statusText}`);
+        }
+      } catch (error) {
+        console.warn(`Error generating FU Meter with model ${model}:`, error);
+      }
     }
 
-    const data = await response.json();
-    const contentText = data.choices[0].message.content;
-    
-    try {
-      const parsed = JSON.parse(contentText);
-      return {
-        fuMeter: typeof parsed.fuMeter === 'number' ? parsed.fuMeter : cooked.fuMeter,
-        originalityScore: typeof parsed.originalityScore === 'number' ? parsed.originalityScore : cooked.originalityScore,
-        fuScore: typeof parsed.fuScore === 'number' ? parsed.fuScore : cooked.fuScore,
-        verdict: typeof parsed.verdict === 'string' ? parsed.verdict : cooked.verdict,
-        suspectedPrompt: typeof parsed.suspectedPrompt === 'string' ? parsed.suspectedPrompt : cooked.suspectedPrompt,
-        breakdown: Array.isArray(parsed.breakdown) ? parsed.breakdown : cooked.breakdown
-      };
-    } catch (e) {
-      console.error("Failed to parse generated FU Meter JSON:", e);
+    if (!parsedResult) {
       return getCookedAnalysis();
     }
-  } catch (error) {
-    console.error("Error generating FU Meter:", error);
-    return getCookedAnalysis();
-  }
+
+    return {
+      fuMeter: typeof parsedResult.fuMeter === 'number' ? parsedResult.fuMeter : cooked.fuMeter,
+      originalityScore: typeof parsedResult.originalityScore === 'number' ? parsedResult.originalityScore : cooked.originalityScore,
+      fuScore: typeof parsedResult.fuScore === 'number' ? parsedResult.fuScore : cooked.fuScore,
+      verdict: typeof parsedResult.verdict === 'string' ? parsedResult.verdict : cooked.verdict,
+      suspectedPrompt: typeof parsedResult.suspectedPrompt === 'string' ? parsedResult.suspectedPrompt : cooked.suspectedPrompt,
+      breakdown: Array.isArray(parsedResult.breakdown) ? parsedResult.breakdown : cooked.breakdown
+    };
 }
