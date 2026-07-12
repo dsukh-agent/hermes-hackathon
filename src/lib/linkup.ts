@@ -24,7 +24,7 @@ export async function extractWithLinkUp(url: string, linkupApiKey: string): Prom
     const data = await response.json();
     if (data.results && data.results.length > 0) {
       // Find the exact match or take the first
-      const match = data.results.find((r: any) => r.url.includes(url) || url.includes(r.url)) || data.results[0];
+      const match = data.results.find((r: { url: string; content?: string }) => r.url.includes(url) || url.includes(r.url)) || data.results[0];
       if (match && match.content) {
         // Clean up the text by removing common boilerplate from LinkedIn/X if present
         let text = match.content;
