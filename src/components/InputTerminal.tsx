@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingOverlay from "./LoadingOverlay";
 import { saveRoast, newRoastId } from "@/lib/roastStore";
-import { DEFAULT_ROAST } from "@/lib/mock";
+import { getRandomCookedRoast } from "@/lib/mock";
 import type { AnalyzeResponse, Roast } from "@/lib/types";
 
 type Mode = "URL" | "RAW";
@@ -132,7 +132,7 @@ export default function InputTerminal() {
         };
       } else {
         // Graceful prototype fallback — still show a card
-        roast = { ...DEFAULT_ROAST, id };
+        roast = getRandomCookedRoast(id, mode === "RAW" ? contentText : `YouTube transcript · ${sourceUrl}`, mode === "URL" ? "youtube" : "text", mode === "URL" ? sourceUrl : undefined, mode === "URL" ? deriveHandle(sourceUrl) : undefined);
       }
 
       saveRoast(roast);
@@ -145,7 +145,7 @@ export default function InputTerminal() {
         setTimeout(() => router.push(`/roast/${id}`), 650);
       }, wait);
     } catch {
-      const roast = { ...DEFAULT_ROAST, id };
+      const roast = getRandomCookedRoast(id, mode === "RAW" ? contentText : `YouTube transcript · ${sourceUrl}`, mode === "URL" ? "youtube" : "text", mode === "URL" ? sourceUrl : undefined, mode === "URL" ? deriveHandle(sourceUrl) : undefined);
       saveRoast(roast);
       setTimeout(() => {
         setDone(true);
