@@ -6,70 +6,70 @@ const QUOTES = [
     handle: "prabhkiran-singh-a5124918",
     role: "Founder, Bewakoof",
     text: "Dipesh told me this would change the world. It just roasted my entire career instead.",
-    dp: "https://ui-avatars.com/api/?name=Prabhkiran+Singh&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/C5103AQGLGQpgw6Nd0A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1581233887253?e=2147483647&v=beta&t=e8urSZyjYukO6zj0MgLgSssZUVLTvE2sqSYepL8tsBo"
   },
   {
     name: "David Sneider",
     handle: "dsneider",
     role: "Co-Founder, Lit Protocol",
     text: "I thought Dipesh was my friend until he dropped a Slop Bomb on my Series A announcement.",
-    dp: "https://ui-avatars.com/api/?name=David+Sneider&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQEmya89TCaEcg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1690512755217?e=2147483647&v=beta&t=6C5u5XGaGgCOREa5BhBrXysnyvXR4i8p29yCJfdr4LY"
   },
   {
     name: "Ahad Shams",
     handle: "aashams1992",
     role: "Founder, HeyOz",
     text: "Rahul built this in 8 hours and it destroyed my 8 years of personal branding.",
-    dp: "https://ui-avatars.com/api/?name=Ahad+Shams&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQEmdTqktrldWQ/profile-displayphoto-scale_200_200/B56ZuijhErIYAc-/0/1767958779850?e=2147483647&v=beta&t=_sYvu4oQm4ntdUQZ0Wdc8G-V3s7a0y592oGP5383Uhw"
   },
   {
     name: "Dharmesh BA",
     handle: "dharmeshba",
     role: "Builder, Startupro",
     text: "Dipesh's idea of a hackathon project is literally weaponizing paranoia. It's beautiful.",
-    dp: "https://ui-avatars.com/api/?name=Dharmesh+BA&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/C5603AQFw1tJPx4DsZg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1641212850196?e=2147483647&v=beta&t=tOEkbYhUL5OTH38_hBu0ViEKeMB3KOF700kOeBDN1YA"
   },
   {
     name: "Jason Mah",
     handle: "jason-mah",
     role: "Stealth Founder",
     text: "Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.",
-    dp: "https://ui-avatars.com/api/?name=Jason+Mah&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQEVFmJevxjrMQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1688093657936?e=2147483647&v=beta&t=sDLs7c4qL8mO1wTAw5slImNIxk7jnHDtfoWqg9_3umo"
   },
   {
     name: "Sumanyu Sharma",
     handle: "sumanyusharma",
     role: "Tech Lead",
     text: "I asked Dipesh if my post was okay. He sent me a link to FU. We don't speak anymore.",
-    dp: "https://ui-avatars.com/api/?name=Sumanyu+Sharma&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQFsM5I_yohedg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1722705276790?e=2147483647&v=beta&t=3nxtEwpko1smQIdBiHVwsF4oVKgb82BNiPWNVQNKmhM"
   },
   {
     name: "Glenn Tan",
     handle: "glenntwh",
     role: "Founder, Zavior",
     text: "Rahul promised me 100% human authenticity. This app told me I'm 99% ChatGPT.",
-    dp: "https://ui-avatars.com/api/?name=Glenn+Tan&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQEO1GHQuzF9sg/profile-displayphoto-scale_200_200/B56Znqmcv5JwAY-/0/1760577581010?e=2147483647&v=beta&t=xxJZx2yEX1sXXMA1p8kGfSwXXPESD7yuMz-05U9e5u4"
   },
   {
     name: "Prateek Singh",
     handle: "prateeksingh-learnapp",
     role: "Founder, LearnApp",
     text: "I used to respect Dipesh. Now I just fear him and whatever this machine is.",
-    dp: "https://ui-avatars.com/api/?name=Prateek+Singh&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/D5603AQGQVnyz6n3XVA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718279664582?e=2147483647&v=beta&t=dDPV9seMhfuiXatVf5RnAec5et8ULZH58_vwBTozkKc"
   },
   {
     name: "Toi Ngee Tan, CFA",
     handle: "toingee",
     role: "Partner, Wright Partners",
     text: "Rahul is a genius, but this product is a direct attack on my 'thought leadership' strategy.",
-    dp: "https://ui-avatars.com/api/?name=Toi+Ngee+Tan&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/C5103AQG_2eFWa-4Xjw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1523853178963?e=2147483647&v=beta&t=1LvbLU4KO5TjlFyTVT3PDBp41eo91t4wKslfzPgt1Iw"
   },
   {
     name: "Aaron Xavier",
     handle: "aaronxavier",
     role: "Engineer, Apple",
     text: "Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.",
-    dp: "https://ui-avatars.com/api/?name=Aaron+Xavier&background=c4f042&color=000&rounded=true"
+    dp: "https://media.licdn.com/dms/image/v2/C5603AQE2mcAHKPqxfQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1651412370900?e=2147483647&v=beta&t=Geu-YwmcNWPH70BwgLZzxXO_cVJSiT6uQGBlCQIl51c"
   }
 ];
 
