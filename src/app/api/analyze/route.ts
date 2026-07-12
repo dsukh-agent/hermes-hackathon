@@ -28,6 +28,12 @@ export async function POST(request: Request) {
       );
     }
 
+    // Phase 1.5: Semantic Deduplication Cache
+    // If we were fully wired to the Convex backend in this route (e.g. using ConvexHttpClient), 
+    // we would check if this exact textToAnalyze has already been roasted.
+    // e.g. const existingRoast = await convex.query(api.roasts.findByText, { text: textToAnalyze });
+    // if (existingRoast) return NextResponse.json({ ...existingRoast, cached: true });
+
     // Read API keys from environment
     const hermesApiKey = process.env.HERMES_API_KEY || process.env.OPENAI_API_KEY || "";
     const linkupApiKey = process.env.LINKUP_API_KEY || "";

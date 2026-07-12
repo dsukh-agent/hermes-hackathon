@@ -4,6 +4,7 @@ export async function generateFUMeter(content: string, searchResults: Record<str
     originalityScore: 20,
     fuScore: 90,
     verdict: "A perfect storm of LinkedIn hustle culture buzzwords.",
+    suspectedPrompt: "Write a preachy post about leadership but use zero concrete examples.",
     breakdown: [
       "No API key provided, using fallback analysis.",
       "Detected high density of synthetic corporate jargon.",
@@ -42,7 +43,8 @@ You MUST return ONLY a valid JSON object with the following schema:
   "fuMeter": number (0-100, where 100 is maximum AI slop),
   "originalityScore": number (0-100, where 0 is entirely plagiarized/generic, use the search results as evidence),
   "fuScore": number (0-100, overall 'fuck you' / cringe rating of the content),
-  "verdict": string (A savage, sarcastic one-line sentence, max 15 words. Example: "This reads like GPT-4 laundering a 2022 Medium article.", "Suspiciously competent. Real humans write worse than this.", "We calculated your burstiness. It proves you're a robot."),
+  "verdict": string (A savage, sarcastic one-line sentence, max 15 words. Example: "This reads like GPT-4 laundering a 2022 Medium article."),
+  "suspectedPrompt": string (The exact, humiliating prompt the user probably typed to generate this garbage. Example: "Write a preachy 3-part listicle about B2B sales but make it sound like a deeply personal revelation."),
   "breakdown": string[] (Exactly 3 bullet points explicitly citing the structural violations found in the text. Example: "Used the word 'holistic' unironically in paragraph 2.")
 }`
           },
@@ -70,6 +72,7 @@ You MUST return ONLY a valid JSON object with the following schema:
         originalityScore: typeof parsed.originalityScore === 'number' ? parsed.originalityScore : fallback.originalityScore,
         fuScore: typeof parsed.fuScore === 'number' ? parsed.fuScore : fallback.fuScore,
         verdict: typeof parsed.verdict === 'string' ? parsed.verdict : fallback.verdict,
+        suspectedPrompt: typeof parsed.suspectedPrompt === 'string' ? parsed.suspectedPrompt : "Write a generic LinkedIn post about synergy.",
         breakdown: Array.isArray(parsed.breakdown) ? parsed.breakdown : fallback.breakdown
       };
     } catch (e) {

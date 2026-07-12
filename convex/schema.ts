@@ -11,6 +11,7 @@ export default defineSchema({
     originalityScore: v.optional(v.number()),
     fuScore: v.optional(v.number()),
     verdict: v.optional(v.string()),
+    suspectedPrompt: v.optional(v.string()),
     breakdown: v.optional(v.array(v.string())),
     searchResults: v.optional(v.any()),
   }),

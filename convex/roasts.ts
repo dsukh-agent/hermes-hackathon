@@ -38,6 +38,7 @@ export const updateRoastScores = mutation({
     originalityScore: v.optional(v.number()),
     fuScore: v.optional(v.number()),
     verdict: v.optional(v.string()),
+    suspectedPrompt: v.optional(v.string()),
     breakdown: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {

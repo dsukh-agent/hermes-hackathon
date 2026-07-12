@@ -38,6 +38,7 @@ This document defines the exact contract between the Frontend (FE) and Backend (
     "originalityScore": 12,
     "fuScore": 92,
     "verdict": "Reads like GPT-4 had a stroke while reading atomic habits.",
+    "suspectedPrompt": "Write a preachy 3-part listicle about B2B sales but make it sound like a deeply personal revelation.",
     "breakdown": [
       "Uses the word 'delve' unironically",
       "3-part listicle structure identical to default Claude output",
@@ -86,10 +87,11 @@ The FE must use the Convex React hooks to mutate and query state.
   searchResults?: Array<{ phrase: string, foundAtUrl: string, similarity: number }>,
   
   // Appears after scored
-  fuMeter?: number,
+  aiSlopScore?: number,
   originalityScore?: number,
   fuScore?: number,
   verdict?: string,
+  suspectedPrompt?: string,
   breakdown?: string[]
 }
 ```
@@ -143,6 +145,7 @@ await updateScores({
   originalityScore: data.score.originalityScore,
   fuScore: data.score.fuScore,
   verdict: data.score.verdict,
+  suspectedPrompt: data.score.suspectedPrompt,
   breakdown: data.score.breakdown
 });
 // FE UI State: Render ScoreCard
