@@ -57,7 +57,7 @@ export async function extractKeyPhrases(content: string, hermesApiKey: string): 
         "X-Title": "FU App",
       },
       body: JSON.stringify({
-        model: "openrouter/free", // Using the free model via OpenRouter
+        model: "nousresearch/hermes-3-llama-3.1-405b", // Upgraded to Hermes 3 405b for reliable JSON extraction
         messages: [
           {
             role: "system",

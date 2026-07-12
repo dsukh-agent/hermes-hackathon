@@ -129,7 +129,7 @@ export async function generateFUMeter(content: string, searchResults: Record<str
         "X-Title": "FU App", // Optional but recommended by OpenRouter
       },
       body: JSON.stringify({
-        model: "openrouter/free", // Using exactly what the user requested
+        model: "nousresearch/hermes-3-llama-3.1-405b", // Upgraded to Hermes 3 405b for reliable JSON extraction
         messages: [
           {
             role: "system",
