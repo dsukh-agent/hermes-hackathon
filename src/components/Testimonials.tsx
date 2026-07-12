@@ -2,54 +2,74 @@
 
 const QUOTES = [
   {
-    name: "Alex",
-    role: "Former Friend of Dipesh",
+    name: "Prabhkiran Singh",
+    handle: "prabhkiran-singh-a5124918",
+    role: "Founder, Bewakoof",
     text: "Dipesh told me this would change the world. It just roasted my entire career instead.",
+    dp: "https://ui-avatars.com/api/?name=Prabhkiran+Singh&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "Sarah",
-    role: "Rahul's Former Colleague",
-    text: "Rahul built this in 8 hours and it destroyed my 8 years of personal branding.",
-  },
-  {
-    name: "Michael",
-    role: "Angel Investor",
+    name: "David Sneider",
+    handle: "dsneider",
+    role: "Co-Founder, Lit Protocol",
     text: "I thought Dipesh was my friend until he dropped a Slop Bomb on my Series A announcement.",
+    dp: "https://ui-avatars.com/api/?name=David+Sneider&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "Jessica",
-    role: "Product Manager",
-    text: "Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.",
+    name: "Ahad Shams",
+    handle: "aashams1992",
+    role: "Founder, HeyOz",
+    text: "Rahul built this in 8 hours and it destroyed my 8 years of personal branding.",
+    dp: "https://ui-avatars.com/api/?name=Ahad+Shams&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "David",
-    role: "Startup Founder",
+    name: "Dharmesh BA",
+    handle: "dharmeshba",
+    role: "Builder, Startupro",
     text: "Dipesh's idea of a hackathon project is literally weaponizing paranoia. It's beautiful.",
+    dp: "https://ui-avatars.com/api/?name=Dharmesh+BA&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "Emily",
-    role: "Content Creator",
-    text: "Rahul promised me 100% human authenticity. This app told me I'm 99% ChatGPT.",
+    name: "Jason Mah",
+    handle: "jason-mah",
+    role: "Stealth Founder",
+    text: "Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.",
+    dp: "https://ui-avatars.com/api/?name=Jason+Mah&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "Chris",
-    role: "Thought Leader",
+    name: "Sumanyu Sharma",
+    handle: "sumanyusharma",
+    role: "Tech Lead",
     text: "I asked Dipesh if my post was okay. He sent me a link to FU. We don't speak anymore.",
+    dp: "https://ui-avatars.com/api/?name=Sumanyu+Sharma&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "Amanda",
-    role: "Growth Hacker",
-    text: "Rahul is a genius, but this product is a direct attack on my 'thought leadership' strategy.",
+    name: "Glenn Tan",
+    handle: "glenntwh",
+    role: "Founder, Zavior",
+    text: "Rahul promised me 100% human authenticity. This app told me I'm 99% ChatGPT.",
+    dp: "https://ui-avatars.com/api/?name=Glenn+Tan&background=c4f042&color=000&rounded=true"
   },
   {
-    name: "James",
-    role: "VC Analyst",
-    text: "Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.",
-  },
-  {
-    name: "Lauren",
-    role: "Marketing Director",
+    name: "Prateek Singh",
+    handle: "prateeksingh-learnapp",
+    role: "Founder, LearnApp",
     text: "I used to respect Dipesh. Now I just fear him and whatever this machine is.",
+    dp: "https://ui-avatars.com/api/?name=Prateek+Singh&background=c4f042&color=000&rounded=true"
+  },
+  {
+    name: "Toi Ngee Tan, CFA",
+    handle: "toingee",
+    role: "Partner, Wright Partners",
+    text: "Rahul is a genius, but this product is a direct attack on my 'thought leadership' strategy.",
+    dp: "https://ui-avatars.com/api/?name=Toi+Ngee+Tan&background=c4f042&color=000&rounded=true"
+  },
+  {
+    name: "Aaron Xavier",
+    handle: "aaronxavier",
+    role: "Engineer, Apple",
+    text: "Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.",
+    dp: "https://ui-avatars.com/api/?name=Aaron+Xavier&background=c4f042&color=000&rounded=true"
   }
 ];
 
@@ -74,13 +94,19 @@ export default function Testimonials() {
             <p className="font-body-md italic text-on-surface mb-6">
               &ldquo;{quote.text}&rdquo;
             </p>
-            <div className="flex flex-col border-t-border-width border-surface-variant pt-4">
-              <span className="font-label-bold text-label-bold uppercase text-primary">
-                {quote.name}
-              </span>
-              <span className="font-code-sm text-[10px] text-secondary uppercase">
-                {quote.role}
-              </span>
+            <div className="flex items-center gap-4 border-t-border-width border-surface-variant pt-4">
+              <img src={quote.dp} alt={quote.name} className="w-12 h-12 rounded-full border-border-width border-primary" />
+              <div className="flex flex-col">
+                <span className="font-label-bold text-label-bold uppercase text-primary">
+                  {quote.name}
+                </span>
+                <span className="font-code-sm text-[10px] text-primary-fixed-dim lowercase">
+                  @{quote.handle}
+                </span>
+                <span className="font-code-sm text-[10px] text-secondary uppercase mt-0.5">
+                  {quote.role}
+                </span>
+              </div>
             </div>
           </div>
         ))}

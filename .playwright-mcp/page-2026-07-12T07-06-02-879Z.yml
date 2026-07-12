@@ -1,0 +1,156 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "FU" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e6]:
+          - link "Feed" [ref=e7] [cursor=pointer]:
+            - /url: /
+          - link "Leaderboard" [ref=e8] [cursor=pointer]:
+            - /url: /leaderboard
+          - link "Manifesto" [ref=e9] [cursor=pointer]:
+            - /url: /manifesto
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: 3 FREE SCANS REMAINING
+          - generic [ref=e13]: SIGN UP TO SHARE PUBLICLY.
+        - link "LOGIN" [ref=e14] [cursor=pointer]:
+          - /url: /signup
+    - generic [ref=e15]:
+      - complementary [ref=e16]:
+        - generic [ref=e17]:
+          - heading "TERMINAL_V1" [level=2] [ref=e18]
+          - paragraph [ref=e19]: "STATUS: AGGRESSIVE"
+        - navigation [ref=e20]:
+          - link "terminal Analyze" [ref=e21] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e22]: terminal
+            - generic [ref=e23]: Analyze
+          - link "history History" [ref=e24] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e25]: history
+            - generic [ref=e26]: History
+          - link "public Global Slop" [ref=e27] [cursor=pointer]:
+            - /url: /leaderboard
+            - generic [ref=e28]: public
+            - generic [ref=e29]: Global Slop
+          - link "payments Upgrade" [ref=e30] [cursor=pointer]:
+            - /url: /pro
+            - generic [ref=e31]: payments
+            - generic [ref=e32]: Upgrade
+        - link "add NEW SCAN" [ref=e33] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e34]: add
+          - text: NEW SCAN
+      - main [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - generic [ref=e39]:
+                - heading "System_Input" [level=1] [ref=e40]
+                - paragraph [ref=e41]: FEED THE MACHINE. EXPOSE THE MEDIOCRITY.
+              - generic [ref=e42]:
+                - generic [ref=e43]:
+                  - button "URL_MODE (YOUTUBE / X / LINKEDIN)" [ref=e44] [cursor=pointer]
+                  - button "RAW_TEXT_MODE (SOCIAL)" [ref=e45] [cursor=pointer]
+                - generic [ref=e46]:
+                  - generic [ref=e47]:
+                    - generic [ref=e48]: "BUFFER_ID: SC-8829-X"
+                    - generic [ref=e49]: AWAITING_PAYLOAD...
+                  - generic [ref=e50]:
+                    - generic [ref=e51]: INPUT YOUTUBE, X, OR LINKEDIN URL FOR SCRAPING
+                    - textbox "https://..." [ref=e52]
+                - button "Run_Analysis arrow_right_alt" [ref=e54] [cursor=pointer]:
+                  - generic [ref=e55]: Run_Analysis
+                  - generic [ref=e56]: arrow_right_alt
+            - complementary [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Status_Monitor" [level=3] [ref=e59]
+                - generic [ref=e61]:
+                  - generic [ref=e62]: "[15:06:02] SYSTEM_READY"
+                  - generic [ref=e63]: "[15:06:02] WAITING_FOR_INPUT..."
+                  - generic [ref=e64]: "[15:06:02] LINKUP_SEARCH_READY"
+                  - generic [ref=e65]: "[15:06:02] HERMES_MODEL_ONLINE"
+                  - generic [ref=e66]: "[15:06:02] CAUTION: SLOP_LEVELS_HIGH"
+              - generic [ref=e67]:
+                - heading "Neural_Engine" [level=4] [ref=e68]
+                - paragraph [ref=e75]: Processing power optimized for semantic brutality. Calculating Overall FU Score...
+              - generic [ref=e77]:
+                - generic [ref=e78]: visibility
+                - generic [ref=e79]: EYE_OF_THE_BEHOLDER_V4
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - heading "Victims_Log" [level=2] [ref=e82]
+              - paragraph [ref=e83]: TESTIMONIALS FROM THE FRIENDS OF DIPESH & RAHUL
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: format_quote
+                - paragraph [ref=e87]: “Dipesh told me this would change the world. It just roasted my entire career instead.”
+                - generic [ref=e88]:
+                  - generic [ref=e89]: Alex
+                  - generic [ref=e90]: Former Friend of Dipesh
+              - generic [ref=e91]:
+                - generic [ref=e92]: format_quote
+                - paragraph [ref=e93]: “Rahul built this in 8 hours and it destroyed my 8 years of personal branding.”
+                - generic [ref=e94]:
+                  - generic [ref=e95]: Sarah
+                  - generic [ref=e96]: Rahul's Former Colleague
+              - generic [ref=e97]:
+                - generic [ref=e98]: format_quote
+                - paragraph [ref=e99]: “I thought Dipesh was my friend until he dropped a Slop Bomb on my Series A announcement.”
+                - generic [ref=e100]:
+                  - generic [ref=e101]: Michael
+                  - generic [ref=e102]: Angel Investor
+              - generic [ref=e103]:
+                - generic [ref=e104]: format_quote
+                - paragraph [ref=e105]: “Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.”
+                - generic [ref=e106]:
+                  - generic [ref=e107]: Jessica
+                  - generic [ref=e108]: Product Manager
+              - generic [ref=e109]:
+                - generic [ref=e110]: format_quote
+                - paragraph [ref=e111]: “Dipesh's idea of a hackathon project is literally weaponizing paranoia. It's beautiful.”
+                - generic [ref=e112]:
+                  - generic [ref=e113]: David
+                  - generic [ref=e114]: Startup Founder
+              - generic [ref=e115]:
+                - generic [ref=e116]: format_quote
+                - paragraph [ref=e117]: “Rahul promised me 100% human authenticity. This app told me I'm 99% ChatGPT.”
+                - generic [ref=e118]:
+                  - generic [ref=e119]: Emily
+                  - generic [ref=e120]: Content Creator
+              - generic [ref=e121]:
+                - generic [ref=e122]: format_quote
+                - paragraph [ref=e123]: “I asked Dipesh if my post was okay. He sent me a link to FU. We don't speak anymore.”
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Chris
+                  - generic [ref=e126]: Thought Leader
+              - generic [ref=e127]:
+                - generic [ref=e128]: format_quote
+                - paragraph [ref=e129]: “Rahul is a genius, but this product is a direct attack on my 'thought leadership' strategy.”
+                - generic [ref=e130]:
+                  - generic [ref=e131]: Amanda
+                  - generic [ref=e132]: Growth Hacker
+              - generic [ref=e133]:
+                - generic [ref=e134]: format_quote
+                - paragraph [ref=e135]: “Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.”
+                - generic [ref=e136]:
+                  - generic [ref=e137]: James
+                  - generic [ref=e138]: VC Analyst
+              - generic [ref=e139]:
+                - generic [ref=e140]: format_quote
+                - paragraph [ref=e141]: “I used to respect Dipesh. Now I just fear him and whatever this machine is.”
+                - generic [ref=e142]:
+                  - generic [ref=e143]: Lauren
+                  - generic [ref=e144]: Marketing Director
+    - contentinfo [ref=e145]:
+      - generic [ref=e146]: © 2026 FU. NO AI WAS CONSULTED.
+      - generic [ref=e147]:
+        - link "API_DOCS" [ref=e148] [cursor=pointer]:
+          - /url: "#"
+        - link "SOURCE" [ref=e149] [cursor=pointer]:
+          - /url: "#"
+        - link "REPORT_SLOP" [ref=e150] [cursor=pointer]:
+          - /url: "#"
+  - alert [ref=e151]
