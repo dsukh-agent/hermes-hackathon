@@ -5,7 +5,7 @@
 - **Product:** FU (fu.app) — paste content → AI slop verdict card
 - **Track:** Hermes Buildathon · Virality
 - **Timeline:** 8 hours total
-- **Stack:** Next.js 14 (App Router), Convex, Hermes + GPT-5.6, LinkUp, Cloudflare Pages, Satori, Datafast
+- **Stack:** Next.js 14 (App Router), Convex, Hermes + GPT-5.6, LinkUp, Cloudflare Pages, Datafast
 
 ---
 
@@ -85,19 +85,16 @@ Files: `src/components/ScoreCard.tsx`
 
 ---
 
-### Phase 6 — PNG Export (45 min)
+### Phase 6 — Client-Side PNG Export (45 min)
 
-Files: `src/app/api/roast/[id]/image/route.ts`, `src/lib/satori.ts`
+Files: `src/components/ScoreCard.tsx`, `src/lib/exportImage.ts`
 
-- [ ] `npm install satori sharp`
-- [ ] Create `generateRoastOG.ts` — Satori component matching ScoreCard design
-- [ ] Map scores/verdict to Satori JSX
-- [ ] Load font (Inter or similar) from `public/fonts/`
-- [ ] Render to SVG → `sharp` → PNG
-- [ ] API route returns PNG with `Content-Type: image/png`
-- [ ] Cache headers: `Cache-Control: public, max-age=3600`
-- [ ] Download button in card UI → fetch image → blob → download
-- [ ] Loading state while image generates
+- [ ] `npm install html-to-image` (or use standard Canvas API)
+- [ ] Add a "Download Roast" button to the `<ScoreCard />` component
+- [ ] Implement a client-side function `exportAsPNG(elementId)` that captures the DOM node of the scorecard
+- [ ] Convert the captured DOM node to a PNG blob
+- [ ] Trigger an automatic download of the blob to the user's local machine
+- [ ] Remove all backend/Satori dependencies for image generation to avoid Cloudflare Pages C++ (sharp) runtime errors
 
 **Depends on:** Phase 5 (card design)
 
@@ -105,7 +102,7 @@ Files: `src/app/api/roast/[id]/image/route.ts`, `src/lib/satori.ts`
 
 ### Phase 7 — Public Roast Page (45 min)
 
-Files: `src/app/roast/[id]/page.tsx`, `src/app/roast/[id]/opengraph-image.tsx`
+Files: `src/app/roast/[id]/page.tsx`
 
 - [ ] Next.js App Router: `app/roast/[id]/page.tsx`
 - [ ] Fetch roast from Convex by ID
@@ -116,7 +113,6 @@ Files: `src/app/roast/[id]/page.tsx`, `src/app/roast/[id]/opengraph-image.tsx`
   - [ ] Copy link button (copies `fu.app/roast/[id]`)
   - [ ] Download PNG button
   - [ ] Share to LinkedIn button (opens share dialog with card + text)
-- [ ] OG image route renders verdict card at request time
 
 **Depends on:** Phase 6, Backend Phase 4
 
@@ -250,7 +246,7 @@ Phase 0 (Scaffold)
   ├── Frontend Track
   │   ├── Phase 1 (Input UI)
   │   ├── Phase 5 (Score Card UI) ← needs BE Phase 4 data shape
-  │   ├── Phase 6 (PNG Export) ← needs Phase 5
+  │   ├── Phase 6 (Client-Side PNG Export) ← needs Phase 5
   │   ├── Phase 7 (Roast Page) ← needs Phase 6 + BE Phase 4
   │   ├── Phase 8 (Signup Gate) ← needs Phase 7
   │   └── Phase 9 (Leaderboard) ← needs BE Phase 4
@@ -276,7 +272,7 @@ Phase 0 (Scaffold)
 | T+0:30 | Phase 1 — Input UI | Phase 2 — Content Extraction |
 | T+1:15 | Phase 5 — Score Card UI | Phase 3 — LinkUp Scan |
 | T+2:00 | Phase 5 (cont.) | Phase 4 — LLM Scoring |
-| T+2:45 | Phase 6 — PNG Export | Phase 4 (cont.) |
+| T+2:45 | Phase 6 — Client-Side PNG Export | Phase 4 (cont.) |
 | T+3:30 | Phase 7 — Roast Page | Phase 4 (cont.) |
 | T+4:15 | Phase 8 — Signup Gate | (catch up / P1) |
 | T+5:00 | Phase 9 — Leaderboard (P1) | Phase 10 — Payments (P1) |
@@ -322,13 +318,11 @@ fu/
 │   │   ├── page.tsx                          # FE Phase 1
 │   │   ├── roast/
 │   │   │   └── [id]/
-│   │   │       ├── page.tsx                  # FE Phase 7
-│   │   │       └── opengraph-image.tsx       # FE Phase 7
+│   │   │       └── page.tsx                  # FE Phase 7
 │   │   ├── leaderboard/
 │   │   │   └── page.tsx                      # FE Phase 9
 │   │   └── api/
 │   │       ├── analyze/route.ts              # BE Phase 2
-│   │       ├── roast/[id]/image/route.ts     # FE Phase 6
 │   │       ├── create-checkout-session/route.ts  # BE Phase 10
 │   │       └── webhooks/dodo/route.ts        # BE Phase 10
 │   ├── components/
@@ -340,7 +334,7 @@ fu/
 │   │   ├── hermes.ts                         # BE Phase 4
 │   │   ├── linkup.ts                         # BE Phase 3
 │   │   ├── youtube.ts                        # BE Phase 2
-│   │   └── satori.ts                         # FE Phase 6
+│   │   └── exportImage.ts                    # FE Phase 6
 │   └── styles/
 │       └── globals.css
 ├── convex/
