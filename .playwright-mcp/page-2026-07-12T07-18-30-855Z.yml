@@ -1,0 +1,186 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - banner [ref=f2e3]:
+      - generic [ref=f2e4]:
+        - link "FU" [ref=f2e5] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f2e6]:
+          - link "Feed" [ref=f2e7] [cursor=pointer]:
+            - /url: /
+          - link "Leaderboard" [ref=f2e8] [cursor=pointer]:
+            - /url: /leaderboard
+          - link "Manifesto" [ref=f2e9] [cursor=pointer]:
+            - /url: /manifesto
+      - generic [ref=f2e10]:
+        - generic [ref=f2e11]:
+          - generic [ref=f2e12]: 3 FREE SCANS REMAINING
+          - generic [ref=f2e13]: SIGN UP TO SHARE PUBLICLY.
+        - link "LOGIN" [ref=f2e14] [cursor=pointer]:
+          - /url: /signup
+    - generic [ref=f2e15]:
+      - complementary [ref=f2e16]:
+        - generic [ref=f2e17]:
+          - heading "TERMINAL_V1" [level=2] [ref=f2e18]
+          - paragraph [ref=f2e19]: "STATUS: AGGRESSIVE"
+        - navigation [ref=f2e20]:
+          - link "terminal Analyze" [ref=f2e21] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f2e22]: terminal
+            - generic [ref=f2e23]: Analyze
+          - link "history History" [ref=f2e24] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f2e25]: history
+            - generic [ref=f2e26]: History
+          - link "public Global Slop" [ref=f2e27] [cursor=pointer]:
+            - /url: /leaderboard
+            - generic [ref=f2e28]: public
+            - generic [ref=f2e29]: Global Slop
+          - link "payments Upgrade" [ref=f2e30] [cursor=pointer]:
+            - /url: /pro
+            - generic [ref=f2e31]: payments
+            - generic [ref=f2e32]: Upgrade
+        - link "add NEW SCAN" [ref=f2e33] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f2e34]: add
+          - text: NEW SCAN
+      - main [ref=f2e35]:
+        - generic [ref=f2e36]:
+          - generic [ref=f2e37]:
+            - generic [ref=f2e38]:
+              - generic [ref=f2e39]:
+                - heading "System_Input" [level=1] [ref=f2e40]
+                - paragraph [ref=f2e41]: FEED THE MACHINE. EXPOSE THE MEDIOCRITY.
+              - generic [ref=f2e42]:
+                - generic [ref=f2e43]:
+                  - button "URL_MODE (YOUTUBE / X / LINKEDIN)" [ref=f2e44] [cursor=pointer]
+                  - button "RAW_TEXT_MODE (SOCIAL)" [ref=f2e45] [cursor=pointer]
+                - generic [ref=f2e46]:
+                  - generic [ref=f2e47]:
+                    - generic [ref=f2e48]: "BUFFER_ID: SC-8829-X"
+                    - generic [ref=f2e49]: AWAITING_PAYLOAD...
+                  - generic [ref=f2e50]:
+                    - generic [ref=f2e51]: INPUT YOUTUBE, X, OR LINKEDIN URL FOR SCRAPING
+                    - textbox "https://..." [ref=f2e52]
+                - button "Run_Analysis arrow_right_alt" [ref=f2e54] [cursor=pointer]:
+                  - generic [ref=f2e55]: Run_Analysis
+                  - generic [ref=f2e56]: arrow_right_alt
+            - complementary [ref=f2e57]:
+              - generic [ref=f2e58]:
+                - heading "Status_Monitor" [level=3] [ref=f2e59]
+                - generic [ref=f2e61]:
+                  - generic [ref=f2e62]: "[15:18:30] SYSTEM_READY"
+                  - generic [ref=f2e63]: "[15:18:30] WAITING_FOR_INPUT..."
+                  - generic [ref=f2e64]: "[15:18:30] LINKUP_SEARCH_READY"
+                  - generic [ref=f2e65]: "[15:18:30] HERMES_MODEL_ONLINE"
+                  - generic [ref=f2e66]: "[15:18:30] CAUTION: SLOP_LEVELS_HIGH"
+              - generic [ref=f2e67]:
+                - heading "Neural_Engine" [level=4] [ref=f2e68]
+                - paragraph [ref=f2e75]: Processing power optimized for semantic brutality. Calculating Overall FU Score...
+              - generic [ref=f2e77]:
+                - generic [ref=f2e78]: visibility
+                - generic [ref=f2e79]: EYE_OF_THE_BEHOLDER_V4
+          - generic [ref=f2e80]:
+            - generic [ref=f2e81]:
+              - heading "Victims_Log" [level=2] [ref=f2e82]
+              - paragraph [ref=f2e83]: TESTIMONIALS FROM THE FRIENDS OF DIPESH & RAHUL
+            - generic [ref=f2e84]:
+              - generic [ref=f2e85]:
+                - generic [ref=f2e86]: format_quote
+                - paragraph [ref=f2e87]: “Dipesh told me this would change the world. It just roasted my entire career instead.”
+                - generic [ref=f2e88]:
+                  - img "Prabhkiran Singh" [ref=f2e89]
+                  - generic [ref=f2e90]:
+                    - generic [ref=f2e91]: Prabhkiran Singh
+                    - generic [ref=f2e92]: "@prabhkiran-singh-a5124918"
+                    - generic [ref=f2e93]: Founder, Bewakoof
+              - generic [ref=f2e94]:
+                - generic [ref=f2e95]: format_quote
+                - paragraph [ref=f2e96]: “I thought Dipesh was my friend until he dropped a Slop Bomb on my Series A announcement.”
+                - generic [ref=f2e97]:
+                  - img "David Sneider" [ref=f2e98]
+                  - generic [ref=f2e99]:
+                    - generic [ref=f2e100]: David Sneider
+                    - generic [ref=f2e101]: "@dsneider"
+                    - generic [ref=f2e102]: Co-Founder, Lit Protocol
+              - generic [ref=f2e103]:
+                - generic [ref=f2e104]: format_quote
+                - paragraph [ref=f2e105]: “Rahul built this in 8 hours and it destroyed my 8 years of personal branding.”
+                - generic [ref=f2e106]:
+                  - img "Ahad Shams" [ref=f2e107]
+                  - generic [ref=f2e108]:
+                    - generic [ref=f2e109]: Ahad Shams
+                    - generic [ref=f2e110]: "@aashams1992"
+                    - generic [ref=f2e111]: Founder, HeyOz
+              - generic [ref=f2e112]:
+                - generic [ref=f2e113]: format_quote
+                - paragraph [ref=f2e114]: “Dipesh's idea of a hackathon project is literally weaponizing paranoia. It's beautiful.”
+                - generic [ref=f2e115]:
+                  - img "Dharmesh BA" [ref=f2e116]
+                  - generic [ref=f2e117]:
+                    - generic [ref=f2e118]: Dharmesh BA
+                    - generic [ref=f2e119]: "@dharmeshba"
+                    - generic [ref=f2e120]: Builder, Startupro
+              - generic [ref=f2e121]:
+                - generic [ref=f2e122]: format_quote
+                - paragraph [ref=f2e123]: “Rahul said 'try my app'. Now I'm paying a $5 de-escalation ransom to hide my own LinkedIn post.”
+                - generic [ref=f2e124]:
+                  - img "Jason Mah" [ref=f2e125]
+                  - generic [ref=f2e126]:
+                    - generic [ref=f2e127]: Jason Mah
+                    - generic [ref=f2e128]: "@jason-mah"
+                    - generic [ref=f2e129]: Stealth Founder
+              - generic [ref=f2e130]:
+                - generic [ref=f2e131]: format_quote
+                - paragraph [ref=f2e132]: “I asked Dipesh if my post was okay. He sent me a link to FU. We don't speak anymore.”
+                - generic [ref=f2e133]:
+                  - img "Sumanyu Sharma" [ref=f2e134]
+                  - generic [ref=f2e135]:
+                    - generic [ref=f2e136]: Sumanyu Sharma
+                    - generic [ref=f2e137]: "@sumanyusharma"
+                    - generic [ref=f2e138]: Tech Lead
+              - generic [ref=f2e139]:
+                - generic [ref=f2e140]: format_quote
+                - paragraph [ref=f2e141]: “Rahul promised me 100% human authenticity. This app told me I'm 99% ChatGPT.”
+                - generic [ref=f2e142]:
+                  - img "Glenn Tan" [ref=f2e143]
+                  - generic [ref=f2e144]:
+                    - generic [ref=f2e145]: Glenn Tan
+                    - generic [ref=f2e146]: "@glenntwh"
+                    - generic [ref=f2e147]: Founder, Zavior
+              - generic [ref=f2e148]:
+                - generic [ref=f2e149]: format_quote
+                - paragraph [ref=f2e150]: “I used to respect Dipesh. Now I just fear him and whatever this machine is.”
+                - generic [ref=f2e151]:
+                  - img "Prateek Singh" [ref=f2e152]
+                  - generic [ref=f2e153]:
+                    - generic [ref=f2e154]: Prateek Singh
+                    - generic [ref=f2e155]: "@prateeksingh-learnapp"
+                    - generic [ref=f2e156]: Founder, LearnApp
+              - generic [ref=f2e157]:
+                - generic [ref=f2e158]: format_quote
+                - paragraph [ref=f2e159]: “Rahul is a genius, but this product is a direct attack on my 'thought leadership' strategy.”
+                - generic [ref=f2e160]:
+                  - img "Toi Ngee Tan, CFA" [ref=f2e161]
+                  - generic [ref=f2e162]:
+                    - generic [ref=f2e163]: Toi Ngee Tan, CFA
+                    - generic [ref=f2e164]: "@toingee"
+                    - generic [ref=f2e165]: Partner, Wright Partners
+              - generic [ref=f2e166]:
+                - generic [ref=f2e167]: format_quote
+                - paragraph [ref=f2e168]: “Dipesh and Rahul have successfully monetized my imposter syndrome. 10/10.”
+                - generic [ref=f2e169]:
+                  - img "Aaron Xavier" [ref=f2e170]
+                  - generic [ref=f2e171]:
+                    - generic [ref=f2e172]: Aaron Xavier
+                    - generic [ref=f2e173]: "@aaronxavier"
+                    - generic [ref=f2e174]: Engineer, Apple
+    - contentinfo [ref=f2e175]:
+      - generic [ref=f2e176]: © 2026 FU. NO AI WAS CONSULTED.
+      - generic [ref=f2e177]:
+        - link "API_DOCS" [ref=f2e178] [cursor=pointer]:
+          - /url: "#"
+        - link "SOURCE" [ref=f2e179] [cursor=pointer]:
+          - /url: "#"
+        - link "REPORT_SLOP" [ref=f2e180] [cursor=pointer]:
+          - /url: "#"
+  - alert [ref=f2e181]
