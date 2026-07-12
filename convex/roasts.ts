@@ -13,6 +13,8 @@ export const createRoast = mutation({
       sourceType: args.sourceType,
       sourceUrl: args.sourceUrl,
       status: args.sourceType === "youtube" ? "extracting_transcript" : "scanning_plagiarism",
+      isArchived: false,
+      bountyPoolAmount: 0,
     });
     return roastId;
   },
@@ -40,6 +42,24 @@ export const updateRoastSearchResults = mutation({
       searchResults: args.searchResults,
       status: "search_complete",
     });
+  },
+});
+
+export const archiveRoast = mutation({
+  args: { id: v.id("roasts") },
+  handler: async (ctx, args) => {
+    // In a real app, verify user owns it or paid the extortion fee
+    await ctx.db.patch(args.id, { isArchived: true });
+  },
+});
+
+export const addBounty = mutation({
+  args: { id: v.id("roasts"), amount: v.number() },
+  handler: async (ctx, args) => {
+    const roast = await ctx.db.get(args.id);
+    if (!roast) throw new Error("Roast not found");
+    const newBounty = (roast.bountyPoolAmount || 0) + args.amount;
+    await ctx.db.patch(args.id, { bountyPoolAmount: newBounty });
   },
 });
 

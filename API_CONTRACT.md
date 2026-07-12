@@ -31,7 +31,11 @@ This document defines the exact contract between the Frontend (FE) and Backend (
       "phrase": "In today's fast-paced digital landscape",
       "foundAtUrl": "https://linkedin.com/post/mock-123",
       "similarity": 0.95
-    }
+  // Monetization / Reputation Management
+  isArchived?: boolean, // If the target paid the $49 "Reputation Management Fee" to hide the roast
+  humanProofVideoUrl?: string, // If the target submitted proof to clear their name
+  bountyPoolAmount?: number, // The pooled credits (Outrage Bounty)
+}
   ],
   "score": {
     "fuMeter": 85,

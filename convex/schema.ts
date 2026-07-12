@@ -14,6 +14,10 @@ export default defineSchema({
     suspectedPrompt: v.optional(v.string()),
     breakdown: v.optional(v.array(v.string())),
     searchResults: v.optional(v.any()),
+    // Monetization & The Daily Slop Board
+    isArchived: v.optional(v.boolean()),
+    humanProofVideoUrl: v.optional(v.string()),
+    bountyPoolAmount: v.optional(v.number()),
   }),
   users: defineTable({
     // empty for now
