@@ -12,19 +12,19 @@
 ## Phase 0 — Shared: Project Scaffold (30 min)
 
 ### 0.1 Repo + remote setup
-- [ ] GitHub repo created, code pushed
-- [ ] Branch protection / team access
+- [x] GitHub repo created, code pushed
+- [x] Branch protection / team access
 
 ### 0.2 Next.js scaffold
-- [ ] `npx create-next-app@14` with App Router + TypeScript + Tailwind
-- [ ] Clean boilerplate (default page, globals.css)
-- [ ] Set up path aliases (`@/` → `src/`)
+- [x] `npx create-next-app@14` with App Router + TypeScript + Tailwind
+- [x] Clean boilerplate (default page, globals.css)
+- [x] Set up path aliases (`@/` → `src/`)
 
 ### 0.3 Convex setup
-- [ ] `npm install convex`
-- [ ] `npx convex dev` → init project, get deployment URL
-- [ ] Create `convex/` directory with schema
-- [ ] Define tables: `roasts`, `users`, `scores`
+- [x] `npm install convex`
+- [x] `npx convex dev` → init project, get deployment URL
+- [x] Create `convex/` directory with schema
+- [x] Define tables: `roasts`, `users`, `scores`
 
 ### 0.4 Deploy target
 - [ ] Push to Cloudflare Pages (first deploy via `wrangler` or Git)
@@ -159,14 +159,14 @@ Files: `src/app/leaderboard/page.tsx`, `src/components/LeaderboardTable.tsx`
 
 Files: `src/app/api/analyze/route.ts`, `src/lib/youtube.ts`, `convex/roasts.ts`
 
-- [ ] API route: `POST /api/analyze`
-- [ ] Text paste handler → send raw text to processing pipeline
-- [ ] YouTube URL handler:
-  - [ ] `npm install youtube-transcript-api` (or `youtubei.js`)
-  - [ ] Extract video ID (handle `watch?v=`, `youtu.be/`, shorts)
-  - [ ] Fetch transcript, trim to first 3,000 chars
-  - [ ] Fallback: "Could not fetch transcript. Try pasting text instead."
-- [ ] Convex mutation `createRoast`: `{ contentText, sourceType, sourceUrl?, userId? }` → `roastId`, status: `pending`
+- [x] API route: `POST /api/analyze`
+- [x] Text paste handler → send raw text to processing pipeline
+- [x] YouTube URL handler:
+  - [x] `npm install youtube-transcript-api` (or `youtubei.js`)
+  - [x] Extract video ID (handle `watch?v=`, `youtu.be/`, shorts)
+  - [x] Fetch transcript, trim to first 3,000 chars
+  - [x] Fallback: "Could not fetch transcript. Try pasting text instead."
+- [x] Convex mutation `createRoast`: `{ contentText, sourceType, sourceUrl?, userId? }` → `roastId`, status: `pending`
 
 **Depends on:** Phase 0
 
@@ -176,13 +176,13 @@ Files: `src/app/api/analyze/route.ts`, `src/lib/youtube.ts`, `convex/roasts.ts`
 
 Files: `src/lib/linkup.ts`, `convex/roasts.ts`
 
-- [ ] Send content to LLM with prompt: "Extract 3–5 key claims or distinctive phrases. Return JSON array."
-- [ ] Parse response, validate array
-- [ ] `POST https://api.linkup.com/search` with each phrase
-- [ ] Collect results: `[{ phrase, foundAtUrl, similarity }]`
-- [ ] Deduplicate by URL
-- [ ] No results → return empty array (LLM scores without web data)
-- [ ] Convex mutation `updateRoastSearchResults`: attach `searchResults`, status: `search_complete`
+- [x] Send content to LLM with prompt: "Extract 3–5 key claims or distinctive phrases. Return JSON array."
+- [x] Parse response, validate array
+- [x] `POST https://api.linkup.com/search` with each phrase
+- [x] Collect results: `[{ phrase, foundAtUrl, similarity }]`
+- [x] Deduplicate by URL
+- [x] No results → return empty array (LLM scores without web data)
+- [x] Convex mutation `updateRoastSearchResults`: attach `searchResults`, status: `search_complete`
 
 **Depends on:** Phase 2, Hermes API key configured
 
@@ -192,16 +192,16 @@ Files: `src/lib/linkup.ts`, `convex/roasts.ts`
 
 Files: `src/lib/hermes.ts`, `convex/roasts.ts`
 
-- [ ] Set up Hermes client (API endpoint from Hermes docs, model: GPT-5.6)
-- [ ] Compose prompt with:
+- [x] Set up Hermes client (API endpoint from Hermes docs, model: GPT-5.6)
+- [x] Compose prompt with:
   - System prompt (AI slop detection expert)
   - LinkUp search results (if any)
   - Content text
   - Instruction to return JSON with `aiFU`, `originalityScore`, `fuScore`, `verdict`, `breakdown`
-- [ ] Parse JSON from LLM response
-- [ ] Validate ranges (0–100 for scores, verdict ≤15 words)
-- [ ] Fallback: if JSON parsing fails, retry once with stricter prompt
-- [ ] Convex mutation `updateRoastScores`: store scores, status: `scored`
+- [x] Parse JSON from LLM response
+- [x] Validate ranges (0–100 for scores, verdict ≤15 words)
+- [x] Fallback: if JSON parsing fails, retry once with stricter prompt
+- [x] Convex mutation `updateRoastScores`: store scores, status: `scored`
 
 **Depends on:** Phase 3
 
